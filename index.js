@@ -9,12 +9,11 @@ var app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-var DEV = process.env.DEV ? true : false;
 var stateKey = 'spotify_auth_state';
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
-var redirect_uri = DEV ? 'http://localhost:5000/callback' : process.env.REDIRECT_URI;
+var redirect_uri = process.NODE_ENV === 'development' ? 'http://localhost:5000/callback' : process.env.REDIRECT_URI;
 
 app.set('port', (process.env.PORT || 5000));
 
